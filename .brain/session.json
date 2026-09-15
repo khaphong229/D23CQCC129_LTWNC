@@ -1,0 +1,46 @@
+{
+  "updated_at": "2026-09-15T21:33:00Z",
+  "working_on": {
+    "feature": "Bài tập Tuần 3 - Module Giỏ hàng Redux Toolkit (bt-tuan-3)",
+    "task": "Hoàn thành khởi tạo dự án, cartSlice, productsSlice, createAsyncThunk, RTK Query bonus, components và hooks",
+    "status": "completed",
+    "files": [
+      "bt-tuan-3/src/app/store.ts",
+      "bt-tuan-3/src/app/hooks.ts",
+      "bt-tuan-3/src/features/products/productsSlice.ts",
+      "bt-tuan-3/src/features/products/productsApi.ts",
+      "bt-tuan-3/src/features/products/ProductList.tsx",
+      "bt-tuan-3/src/features/cart/cartSlice.ts",
+      "bt-tuan-3/src/features/cart/Cart.tsx",
+      "bt-tuan-3/src/App.tsx",
+      "bt-tuan-3/src/main.tsx",
+      "bt-tuan-3/src/index.css"
+    ],
+    "blockers": [],
+    "notes": "Đã build test thành công 100%, không còn lỗi TypeScript."
+  },
+  "completed_tasks": [
+    "Bài tập trước: TypeScript Module Quản lý đơn hàng (order-management.ts)",
+    "Bài tập Tuần 3: Tạo folder bt-tuan-3 với ReactJS + Redux Toolkit đúng chuẩn feature-based",
+    "Bài tập Tuần 3: Cấu hình store.ts và hooks.ts đã gõ kiểu (useAppDispatch, useAppSelector)",
+    "Bài tập Tuần 3: productsSlice dùng createAsyncThunk lấy danh sách sản phẩm từ API giả lập",
+    "Bài tập Tuần 3: Thêm productsApi.ts dùng RTK Query lấy điểm cộng theo khuyến khích của đề bài",
+    "Bài tập Tuần 3: cartSlice hỗ trợ thêm, xoá, cập nhật số lượng, tăng giảm và tính tổng tiền",
+    "Bài tập Tuần 3: Toàn bộ component chỉ dùng useAppDispatch/useAppSelector đã gõ kiểu"
+  ],
+  "pending_tasks": [],
+  "decisions_made": [
+    {
+      "decision": "Dùng BaseEntity<TId = string> kế thừa cho Product, Customer, Order",
+      "reason": "Chuẩn hóa các trường id, createdAt, updatedAt theo nguyên tắc DRY"
+    },
+    {
+      "decision": "Dùng Omit để tạo CreateProductDTO, CreateCustomerDTO, CreateOrderDTO",
+      "reason": "Tránh việc client gửi đè id hoặc thay đổi trạng thái khi tạo mới"
+    },
+    {
+      "decision": "Dùng keyof T trong calculateTotal<T>",
+      "reason": "Đảm bảo tính an toàn kiểu tuyệt đối, ngăn lỗi typo tên trường"
+    }
+  ]
+}

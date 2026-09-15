@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "schema_version": "1.1.0",
+    "awf_version": "4.0.2"
+  },
+  "project": {
+    "name": "D23CQCC129_LTWNC",
+    "type": "Course Assignment - Advanced Web Programming (Lập trình Web Nâng cao)",
+    "status": "in_progress",
+    "description": "Bài tập thiết kế bộ Type TypeScript đầy đủ (Interface, Enum, Generic, Utility Types) cho Module Quản lý đơn hàng"
+  },
+  "tech_stack": {
+    "language": "TypeScript",
+    "concepts": [
+      "Interface & Extends",
+      "Enum",
+      "Generic Types & Type Parameters (<T>, <TId>)",
+      "Utility Types (Omit, Partial, Pick, Readonly, Record)",
+      "Type Safety & Data Transfer Objects (DTO)"
+    ]
+  },
+  "modules": [
+    {
+      "name": "Order Management",
+      "file": "order-management.ts",
+      "enums": ["OrderStatus", "PaymentMethod", "CustomerTier"],
+      "core_interfaces": ["BaseEntity", "ApiResponse", "PaginatedResponse", "Product", "Address", "Customer", "OrderItem", "Order"],
+      "utility_types": [
+        "CreateProductDTO",
+        "CreateCustomerDTO",
+        "CreateOrderItemDTO",
+        "CreateOrderDTO",
+        "UpdateProductDTO",
+        "UpdateCustomerDTO",
+        "UpdateOrderStatusDTO",
+        "ProductSummary",
+        "CustomerSummary",
+        "OrderSummary",
+        "ImutableOrder",
+        "ImutableCustomer",
+        "ImutableProduct"
+      ],
+      "generic_helpers": ["createApiResponse", "calculateTotal"]
+    }
+  ],
+  "knowledge_items": {
+    "patterns": [
+      "BaseEntity<TId = string> cho phép kế thừa các thuộc tính chung (id, createdAt, updatedAt)",
+      "Snapshot data trong OrderItem (productName, unitPrice) để bảo toàn giá trị lịch sử",
+      "Utility Types Omit để tạo DTO loại bỏ trường tự sinh lúc insert",
+      "Utility Types Partial cho patch/update linh hoạt",
+      "Generic Type parameter T trong calculateTotal<T>(items: T[], key: keyof T) giúp an toàn kiểu tuyệt đối"
+    ]
+  }
+}
