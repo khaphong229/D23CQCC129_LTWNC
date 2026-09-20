@@ -3,7 +3,9 @@
   "working_on": {
     "feature": "Bài tập Tuần 3 - Module Giỏ hàng Redux Toolkit (bt-tuan-3)",
     "task": "Hoàn thành khởi tạo dự án, cartSlice, productsSlice, createAsyncThunk, RTK Query bonus, components và hooks",
-    "status": "completed",
+    "status": "running",
+    "last_run": "2026-09-20T14:11:00+07:00",
+    "last_run_url": "http://localhost:5173/",
     "files": [
       "bt-tuan-3/src/app/store.ts",
       "bt-tuan-3/src/app/hooks.ts",
@@ -17,7 +19,7 @@
       "bt-tuan-3/src/index.css"
     ],
     "blockers": [],
-    "notes": "Đã build test thành công 100%, không còn lỗi TypeScript."
+    "notes": "Đã khởi động Vite dev server tại http://localhost:5173/."
   },
   "completed_tasks": [
     "Bài tập trước: TypeScript Module Quản lý đơn hàng (order-management.ts)",

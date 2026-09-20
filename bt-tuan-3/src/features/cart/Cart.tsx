@@ -35,13 +35,11 @@ export const Cart: React.FC = () => {
     }
   };
 
-  // Giả lập nút thanh toán
+  // Giả lập thanh toán
   const handleCheckout = () => {
     if (cartItems.length === 0) return;
     alert(
-      `🎉 Cảm ơn thầy/cô đã chấm bài!\nTổng đơn hàng: ${formatMoney(
-        totalPrice
-      )} (${totalQuantity} sản phẩm).\nĐơn hàng đã được đặt thành công!`
+      `Đặt hàng thành công!\nTổng tiền: ${formatMoney(totalPrice)} (${totalQuantity} sản phẩm).\nCảm ơn bạn đã mua sắm!`
     );
     dispatch(clearCart());
   };
@@ -49,116 +47,112 @@ export const Cart: React.FC = () => {
   return (
     <div className="cart-container">
       <div className="cart-header">
-        <h2>🛒 Giỏ Hàng Của Bạn</h2>
+        <h2>Giỏ hàng của bạn</h2>
         {cartItems.length > 0 && (
           <button
             type="button"
             className="btn-clear-all"
             onClick={() => {
-              if (window.confirm('Bạn có chắc muốn xoá hết tất cả sản phẩm trong giỏ?')) {
+              if (window.confirm('Bạn có chắc muốn xoá toàn bộ giỏ hàng?')) {
                 dispatch(clearCart());
               }
             }}
           >
-            🗑️ Xóa toàn bộ giỏ
+            Xóa toàn bộ
           </button>
         )}
       </div>
 
-      {/* Trường hợp giỏ hàng chưa có gì */}
+      {/* Trường hợp giỏ hàng trống */}
       {cartItems.length === 0 ? (
         <div className="empty-cart-box">
-          <div className="empty-cart-icon">🛒💨</div>
-          <h3>Giỏ hàng đang trống trơn!</h3>
-          <p>Hãy qua tab "Sản phẩm" để chọn vài món đồ ưng ý nha.</p>
+          <p>Giỏ hàng hiện đang trống.</p>
         </div>
       ) : (
-        <div className="cart-content-layout">
-          {/* Bảng danh sách các món trong giỏ */}
-          <div className="cart-items-list">
-            {cartItems.map((item) => (
-              <div key={item.id} className="cart-item-card">
-                <img src={item.image} alt={item.name} className="cart-item-img" />
-
-                <div className="cart-item-details">
-                  <h4 className="cart-item-name">{item.name}</h4>
-                  <div className="cart-item-unit-price">
-                    Đơn giá: <b>{formatMoney(item.price)}</b>
-                  </div>
-                </div>
-
-                {/* Bộ điều khiển tăng, giảm, cập nhật số lượng */}
-                <div className="cart-quantity-controls">
-                  <button
-                    type="button"
-                    className="btn-qty"
-                    title="Giảm số lượng"
-                    onClick={() => dispatch(decreaseQuantity(item.id))}
-                  >
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    min="1"
-                    className="input-qty"
-                    value={item.quantity}
-                    onChange={(e) => handleInputChange(item.id, e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    className="btn-qty"
-                    title="Tăng số lượng"
-                    onClick={() => dispatch(increaseQuantity(item.id))}
-                  >
-                    +
-                  </button>
-                </div>
-
-                {/* Thành tiền của từng món */}
-                <div className="cart-item-subtotal">
-                  <span className="subtotal-label">Thành tiền:</span>
-                  <span className="subtotal-value">
-                    {formatMoney(item.price * item.quantity)}
-                  </span>
-                </div>
-
-                {/* Nút xoá món khỏi giỏ */}
-                <button
-                  type="button"
-                  className="btn-remove-item"
-                  title="Xoá món này"
-                  onClick={() => dispatch(removeFromCart(item.id))}
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
+        <div className="cart-content">
+          <div className="table-responsive">
+            <table className="cart-table">
+              <thead>
+                <tr>
+                  <th style={{ width: '60px' }}>STT</th>
+                  <th style={{ width: '80px' }}>Ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th style={{ width: '130px' }}>Đơn giá</th>
+                  <th style={{ width: '130px' }}>Số lượng</th>
+                  <th style={{ width: '130px' }}>Thành tiền</th>
+                  <th style={{ width: '80px' }}>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartItems.map((item, index) => (
+                  <tr key={item.id}>
+                    <td className="text-center">{index + 1}</td>
+                    <td>
+                      <img src={item.image} alt={item.name} className="cart-item-img" />
+                    </td>
+                    <td>
+                      <div className="cart-item-name">{item.name}</div>
+                    </td>
+                    <td className="text-right">{formatMoney(item.price)}</td>
+                    <td>
+                      <div className="cart-quantity-controls">
+                        <button
+                          type="button"
+                          className="btn-qty"
+                          onClick={() => dispatch(decreaseQuantity(item.id))}
+                        >
+                          -
+                        </button>
+                        <input
+                          type="number"
+                          min="1"
+                          className="input-qty"
+                          value={item.quantity}
+                          onChange={(e) => handleInputChange(item.id, e.target.value)}
+                        />
+                        <button
+                          type="button"
+                          className="btn-qty"
+                          onClick={() => dispatch(increaseQuantity(item.id))}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </td>
+                    <td className="text-right font-bold">
+                      {formatMoney(item.price * item.quantity)}
+                    </td>
+                    <td className="text-center">
+                      <button
+                        type="button"
+                        className="btn-remove-item"
+                        onClick={() => dispatch(removeFromCart(item.id))}
+                      >
+                        Xóa
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
 
-          {/* Khung tổng kết thanh toán bên phải */}
-          <div className="cart-summary-card">
-            <h3>Tóm Tắt Đơn Hàng</h3>
-            <div className="summary-row">
-              <span>Tổng số lượng:</span>
-              <b>{totalQuantity} món</b>
+          {/* Phần thanh toán và tổng kết */}
+          <div className="cart-footer-bar">
+            <div className="cart-summary-text">
+              <span>Tổng số lượng: <b>{totalQuantity}</b> sản phẩm</span>
+              <span className="summary-separator">|</span>
+              <span>Tổng tiền thanh toán: <b className="total-price">{formatMoney(totalPrice)}</b></span>
             </div>
-            <div className="summary-row">
-              <span>Phí vận chuyển:</span>
-              <span className="free-shipping">Miễn phí 🎁</span>
+            <div className="cart-actions">
+              <button
+                type="button"
+                className="btn-checkout"
+                onClick={handleCheckout}
+              >
+                Thanh toán đơn hàng
+              </button>
             </div>
-            <hr />
-            <div className="summary-row total-row">
-              <span>Tổng thanh toán:</span>
-              <span className="total-money">{formatMoney(totalPrice)}</span>
-            </div>
-
-            <button
-              type="button"
-              className="btn-checkout"
-              onClick={handleCheckout}
-            >
-              Thanh Toán Ngay 💳
-            </button>
           </div>
         </div>
       )}
