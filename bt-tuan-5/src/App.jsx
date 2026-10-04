@@ -1,9 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { initialProducts } from './mockData'
 import UnoptimizedList from './components/UnoptimizedList'
+import OptimizedList from './components/OptimizedList'
 
 export default function App() {
-  const [mode, setMode] = useState('unoptimized')
+  const [mode, setMode] = useState(() => {
+    const params = new URLSearchParams(window.location.search)
+    return params.get('mode') || 'optimized'
+  })
+
+  const switchMode = (newMode) => {
+    setMode(newMode)
+    const url = new URL(window.location.href)
+    url.searchParams.set('mode', newMode)
+    window.history.replaceState(null, '', url.toString())
+  }
 
   return (
     <div className="container">
@@ -13,24 +24,22 @@ export default function App() {
         <strong>Chế độ xem:</strong>
         <button
           className={mode === 'unoptimized' ? 'btn-active' : ''}
-          onClick={() => setMode('unoptimized')}
+          onClick={() => switchMode('unoptimized')}
         >
           1. Chưa tối ưu (10.000 DOM nodes)
         </button>
         <button
           className={mode === 'optimized' ? 'btn-active' : ''}
-          onClick={() => setMode('optimized')}
+          onClick={() => switchMode('optimized')}
         >
-          2. Đã tối ưu (Phase 04)
+          2. Đã tối ưu (Virtualization + Memo + Lazy)
         </button>
       </div>
 
       {mode === 'unoptimized' ? (
         <UnoptimizedList products={initialProducts} />
       ) : (
-        <div className="box">
-          <p>Chế độ Tối ưu sẽ được xây dựng ở <strong>Phase 04</strong> sau khi hoàn thành đo Lighthouse ở Phase 03.</p>
-        </div>
+        <OptimizedList products={initialProducts} />
       )}
     </div>
   )
