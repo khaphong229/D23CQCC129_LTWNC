@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  font-family: Arial, sans-serif;
+  color: #111;
+  background-color: #fff;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0 0 12px 0;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 12px 0 8px 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.box {
+  border: 1px solid #999;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+input, select, button {
+  font-size: 14px;
+  padding: 4px 8px;
+  border: 1px solid #777;
+  background: #f7f7f7;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e5e5e5;
+}
+
+.btn-active {
+  background: #333;
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th, td {
+  border: 1px solid #bbb;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #eee;
+}
+
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.badge {
+  display: inline-block;
+  padding: 1px 4px;
+  border: 1px solid #aaa;
+  font-size: 11px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stat-item {
+  border: 1px dashed #aaa;
+  padding: 8px;
+}

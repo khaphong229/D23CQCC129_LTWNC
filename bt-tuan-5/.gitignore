@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssr
+*.local
+.vscode
+.DS_Store
+
+# Tai lieu va bao cao ca nhan
+docs/
+plans/
+reports/
