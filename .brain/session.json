@@ -1,48 +1,55 @@
 {
-  "updated_at": "2026-09-15T21:33:00Z",
+  "updated_at": "2026-10-05T21:02:00Z",
   "working_on": {
-    "feature": "Bài tập Tuần 3 - Module Giỏ hàng Redux Toolkit (bt-tuan-3)",
-    "task": "Hoàn thành khởi tạo dự án, cartSlice, productsSlice, createAsyncThunk, RTK Query bonus, components và hooks",
-    "status": "running",
-    "last_run": "2026-09-20T14:11:00+07:00",
-    "last_run_url": "http://localhost:5173/",
+    "feature": "Bài tập Tuần 6 - Kiểm thử Module Giỏ hàng & Sản phẩm (bt-tuan-6)",
+    "task": "Hoàn thành 41 test cases (Unit, RTL Integration, Mocked Async API) với Jest coverage đạt 98.37% (>= 70%) và xuất ảnh báo cáo",
+    "status": "completed",
+    "last_run": "2026-10-05T21:01:00+07:00",
     "files": [
-      "bt-tuan-3/src/app/store.ts",
-      "bt-tuan-3/src/app/hooks.ts",
-      "bt-tuan-3/src/features/products/productsSlice.ts",
-      "bt-tuan-3/src/features/products/productsApi.ts",
-      "bt-tuan-3/src/features/products/ProductList.tsx",
-      "bt-tuan-3/src/features/cart/cartSlice.ts",
-      "bt-tuan-3/src/features/cart/Cart.tsx",
-      "bt-tuan-3/src/App.tsx",
-      "bt-tuan-3/src/main.tsx",
-      "bt-tuan-3/src/index.css"
+      "bt-tuan-6/src/features/cart/__tests__/cartSlice.test.ts",
+      "bt-tuan-6/src/features/cart/__tests__/Cart.test.tsx",
+      "bt-tuan-6/src/features/products/__tests__/productsSlice.test.ts",
+      "bt-tuan-6/src/features/products/__tests__/productsApi.test.ts",
+      "bt-tuan-6/src/features/products/__tests__/ProductList.test.tsx",
+      "bt-tuan-6/src/app/__tests__/hooks.test.ts",
+      "bt-tuan-6/src/__tests__/App.test.tsx",
+      "bt-tuan-6/reports/BAO_CAO_KIEM_THU.md",
+      "bt-tuan-6/reports/coverage-report.png"
     ],
     "blockers": [],
-    "notes": "Đã khởi động Vite dev server tại http://localhost:5173/."
+    "notes": "Đã chạy jest --coverage thành công 100% test suites (7/7 passed, 41/41 tests passed), coverage statements 98.37%, branch 98.30%, funcs 100%, lines 99.04%."
   },
   "completed_tasks": [
-    "Bài tập trước: TypeScript Module Quản lý đơn hàng (order-management.ts)",
-    "Bài tập Tuần 3: Tạo folder bt-tuan-3 với ReactJS + Redux Toolkit đúng chuẩn feature-based",
-    "Bài tập Tuần 3: Cấu hình store.ts và hooks.ts đã gõ kiểu (useAppDispatch, useAppSelector)",
-    "Bài tập Tuần 3: productsSlice dùng createAsyncThunk lấy danh sách sản phẩm từ API giả lập",
-    "Bài tập Tuần 3: Thêm productsApi.ts dùng RTK Query lấy điểm cộng theo khuyến khích của đề bài",
-    "Bài tập Tuần 3: cartSlice hỗ trợ thêm, xoá, cập nhật số lượng, tăng giảm và tính tổng tiền",
-    "Bài tập Tuần 3: Toàn bộ component chỉ dùng useAppDispatch/useAppSelector đã gõ kiểu"
+    "Bài tập Tuần 1: TypeScript Module Quản lý đơn hàng (order-management.ts)",
+    "Bài tập Tuần 2: Custom Hooks & Component Accordion",
+    "Bài tập Tuần 3: Module Giỏ hàng Redux Toolkit (bt-tuan-3)",
+    "Bài tập Tuần 4: Quản lý state với Zustand (bt-tuan-4)",
+    "Bài tập Tuần 5: Tối ưu hiệu năng ReactJS 10.000 sản phẩm (bt-tuan-5, Lighthouse 100)",
+    "Bài tập Tuần 6: Khởi tạo bt-tuan-6 từ bt-tuan-3",
+    "Bài tập Tuần 6: Cài đặt và cấu hình Jest + React Testing Library + Babel cho React 19 & TypeScript",
+    "Bài tập Tuần 6: Viết 11 unit tests cho cartSlice (reducers & actions)",
+    "Bài tập Tuần 6: Viết 6 unit & async thunk tests cho productsSlice",
+    "Bài tập Tuần 6: Viết 2 async mock API tests cho productsApi (RTK Query endpoint)",
+    "Bài tập Tuần 6: Viết unit tests cho custom typed hooks (hooks.test.ts)",
+    "Bài tập Tuần 6: Viết 10 integration tests với RTL cho Cart component",
+    "Bài tập Tuần 6: Viết 8 integration tests với RTL cho ProductList component",
+    "Bài tập Tuần 6: Viết 3 integration tests cho App component và production store",
+    "Bài tập Tuần 6: Chạy jest --coverage đạt 98.37% (vượt mức 70% yêu cầu)",
+    "Bài tập Tuần 6: Xuất ảnh báo cáo coverage reports/coverage-report.png và lập BAO_CAO_KIEM_THU.md"
   ],
   "pending_tasks": [],
   "decisions_made": [
     {
-      "decision": "Dùng BaseEntity<TId = string> kế thừa cho Product, Customer, Order",
-      "reason": "Chuẩn hóa các trường id, createdAt, updatedAt theo nguyên tắc DRY"
+      "decision": "Dùng Babel (babel-jest) kết hợp jest-environment-jsdom và @testing-library/react 16+",
+      "reason": "Tương thích mượt mà với React 19, TypeScript và Redux Toolkit mà không gặp xung đột moduleResolution"
     },
     {
-      "decision": "Dùng Omit để tạo CreateProductDTO, CreateCustomerDTO, CreateOrderDTO",
-      "reason": "Tránh việc client gửi đè id hoặc thay đổi trạng thái khi tạo mới"
+      "decision": "Mock global.fetch trả về native Response object cho RTK Query",
+      "reason": "RTK Query fetchBaseQuery yêu cầu đầy đủ các phương thức response.clone(), .json() theo spec"
     },
     {
-      "decision": "Dùng keyof T trong calculateTotal<T>",
-      "reason": "Đảm bảo tính an toàn kiểu tuyệt đối, ngăn lỗi typo tên trường"
+      "decision": "Tách exclude test files khỏi tsconfig.app.json",
+      "reason": "Giữ cho lệnh tsc -b && vite build độc lập và kiểm tra kiểu mã nguồn production sạch sẽ"
     }
   ]
 }

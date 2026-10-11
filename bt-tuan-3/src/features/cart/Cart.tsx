@@ -1,5 +1,4 @@
 import React from 'react';
-// Đề bài: "Toàn bộ component chỉ dùng useAppDispatch/useAppSelector đã gõ kiểu"
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   removeFromCart,
@@ -11,23 +10,18 @@ import {
 
 export const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
-
-  // Lấy danh sách sản phẩm trong giỏ hàng từ Redux store
   const cartItems = useAppSelector((state) => state.cart.items);
 
-  // Tính tổng số lượng món đồ và tổng số tiền thanh toán
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
 
-  // Hàm format tiền tệ Việt Nam Đồng
   const formatMoney = (amount: number) => {
     return amount.toLocaleString('vi-VN') + ' đ';
   };
 
-  // Xử lý khi người dùng gõ số lượng trực tiếp vào ô input
   const handleInputChange = (id: number, valueStr: string) => {
     const value = parseInt(valueStr, 10);
     if (!isNaN(value)) {
@@ -35,7 +29,6 @@ export const Cart: React.FC = () => {
     }
   };
 
-  // Giả lập thanh toán
   const handleCheckout = () => {
     if (cartItems.length === 0) return;
     alert(
@@ -63,7 +56,6 @@ export const Cart: React.FC = () => {
         )}
       </div>
 
-      {/* Trường hợp giỏ hàng trống */}
       {cartItems.length === 0 ? (
         <div className="empty-cart-box">
           <p>Giỏ hàng hiện đang trống.</p>
@@ -137,7 +129,6 @@ export const Cart: React.FC = () => {
             </table>
           </div>
 
-          {/* Phần thanh toán và tổng kết */}
           <div className="cart-footer-bar">
             <div className="cart-summary-text">
               <span>Tổng số lượng: <b>{totalQuantity}</b> sản phẩm</span>

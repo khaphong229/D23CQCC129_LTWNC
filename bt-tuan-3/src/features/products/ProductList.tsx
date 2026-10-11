@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// Chú ý: Chỉ dùng useAppDispatch và useAppSelector từ app/hooks.ts theo đúng yêu cầu đề bài
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchProducts } from './productsSlice';
 import type { Product } from './productsSlice';
@@ -9,32 +8,26 @@ import { useGetProductsFromApiQuery } from './productsApi';
 export const ProductList: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  // Lấy dữ liệu từ Redux store bằng useAppSelector đã gõ kiểu
   const products = useAppSelector((state) => state.products.items);
   const status = useAppSelector((state) => state.products.status);
   const error = useAppSelector((state) => state.products.error);
 
-  // Tab chuyển đổi: Dùng createAsyncThunk hay dùng RTK Query để khoe với thầy lấy điểm cộng
   const [useRtkQuery, setUseRtkQuery] = useState<boolean>(false);
 
-  // Gọi RTK Query hook (chỉ kích hoạt lấy dữ liệu)
   const {
     data: rtkProducts,
     isLoading: isRtkLoading,
     isError: isRtkError,
   } = useGetProductsFromApiQuery(undefined, { skip: !useRtkQuery });
 
-  // Thông báo vừa thêm sản phẩm vào giỏ
   const [notification, setNotification] = useState<string | null>(null);
 
-  // Tự động gọi API giả lập khi component được mount lần đầu
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchProducts());
     }
   }, [status, dispatch]);
 
-  // Hàm xử lý khi bấm nút "Thêm vào giỏ hàng"
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart(product));
     setNotification(`Đã thêm "${product.name}" vào giỏ hàng thành công!`);
@@ -43,7 +36,6 @@ export const ProductList: React.FC = () => {
     }, 2500);
   };
 
-  // Định dạng tiền VNĐ cho dễ nhìn
   const formatMoney = (amount: number) => {
     return amount.toLocaleString('vi-VN') + ' đ';
   };
@@ -54,7 +46,6 @@ export const ProductList: React.FC = () => {
 
   return (
     <div className="product-list-container">
-      {/* Thông báo thêm giỏ hàng */}
       {notification && <div className="alert-success">{notification}</div>}
 
       <div className="section-header">
@@ -66,7 +57,6 @@ export const ProductList: React.FC = () => {
           </p>
         </div>
 
-        {/* Nút chuyển chế độ */}
         <div className="switch-mode-box">
           <button
             type="button"
@@ -85,14 +75,12 @@ export const ProductList: React.FC = () => {
         </div>
       </div>
 
-      {/* Trạng thái tải dữ liệu */}
       {isCurrentLoading && (
         <div className="loading-box">
           <p>Đang tải danh sách sản phẩm...</p>
         </div>
       )}
 
-      {/* Trạng thái lỗi */}
       {isCurrentError && (
         <div className="error-box">
           <p>Lỗi: {error || 'Không thể tải dữ liệu sản phẩm'}</p>
@@ -108,7 +96,6 @@ export const ProductList: React.FC = () => {
         </div>
       )}
 
-      {/* Lưới sản phẩm */}
       {!isCurrentLoading && !isCurrentError && (
         <div className="products-grid">
           {currentList.map((product) => (
